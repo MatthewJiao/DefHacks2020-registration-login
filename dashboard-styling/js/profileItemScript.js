@@ -148,7 +148,7 @@
       prog: selectedProgram,
       year: graduatingYear
     }
-    const rawResponse = fetch('https://c206dc7845d4.ngrok.io/dashboard/profile', {
+    const rawResponse = fetch('http://omegu.herokuapp.com/dashboard/profile', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',

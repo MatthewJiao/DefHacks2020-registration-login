@@ -3,6 +3,30 @@ const Router = express.Router()
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const passport = require('passport')
+const nodemailer = require('nodemailer')
+const jwt = require('jsonwebtoken')
+
+
+Router.get('/confirmation/:token', async (req, res) =>{
+    console.log("hell")
+    try{
+        //const {user: {id}} = jwt.verify(req.params.token, EMAIL_SECRET)
+       // await User.update({confirmed: true}, {where: {id}})
+        
+       // User.update({email: req.params.token}, {
+         //   confirmed: true 
+        //})
+        const filter = { email: `${req.params.token}` };
+        const update = { confirmed: true };
+        await User.findOneAndUpdate(filter, update);
+
+
+    } catch(e){
+        res.send('error')
+    }
+
+    return res.redirect('/users/login')
+})
 
 Router.get('/login', (req, res)=>{
     res.render('login')
@@ -13,7 +37,7 @@ Router.get('/register', (req, res)=>{
 })
 
 
-Router.post('/register', (req, res)=>{
+Router.post('/register', async (req, res)=>{
     const {name, email, password, password2} = req.body
     let errors = []
 
@@ -53,7 +77,7 @@ Router.post('/register', (req, res)=>{
         })
     }else{
         User.findOne({email: email})
-        .then(user => {
+        .then(async user => {
             if(user){
                 errors.push({msg: 'Email is already registered'})
                 res.render('register', {
@@ -68,6 +92,25 @@ Router.post('/register', (req, res)=>{
                     name,
                     email,
                     password
+                })
+
+                const transporter = nodemailer.createTransport({
+                    service: 'Gmail',
+                    auth: {
+                        user: "jiaomatthew222@gmail.com",
+                        pass: "b0nan0mankillsy0u"
+                    }
+                })
+            
+                const EMAIL_SECRET = 'qwertyuiopasdfghjklzxcvbnmqwertyuiop'
+            
+                    
+                const url = `http://omegu.herokuapp.com/users/confirmation/${email}`
+            
+               await transporter.sendMail({
+                    to: email,
+                    subject: 'Confirm Email',
+                    html: `please click this link to confirm your email: <a href="${url}">${url}</a>`
                 })
                 
                 bcrypt.genSalt(10, (err, salt)=>
@@ -86,6 +129,7 @@ Router.post('/register', (req, res)=>{
         })
     }
 
+   
 
 })
 
