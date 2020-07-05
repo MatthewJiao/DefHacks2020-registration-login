@@ -95,17 +95,12 @@ Router.post('/register', async (req, res)=>{
                 })
 
                 const transporter = nodemailer.createTransport({
-                    service: 'Gmail',
+                    service: 'gmail',
                     auth: {
                         user: "jiaomatthew222@gmail.com",
                         pass: "b0nan0mankillsy0u"
-                    },
-                    secureConnection: false, // TLS requires secureConnection to be false
-                    port: 587, // port for secure SMTP - TLS
-                    tls: {
-                        rejectUnauthorized: false
-                     },
-                     ignoreTLS: false
+                    }
+                    
                 })
             
                 const EMAIL_SECRET = 'qwertyuiopasdfghjklzxcvbnmqwertyuiop'
@@ -118,6 +113,12 @@ Router.post('/register', async (req, res)=>{
                     subject: 'Confirm Email',
                     html: `please click this link to confirm your email: <a href="${url}">${url}</a>`,
                     
+                }, function(err, data){
+                    if(err){
+                        console.log('an error occured', err)
+                    } else{
+                        console.log('email sent')
+                    }
                 })
                 
                 bcrypt.genSalt(10, (err, salt)=>
