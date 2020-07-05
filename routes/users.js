@@ -100,6 +100,8 @@ Router.post('/register', async (req, res)=>{
                         user: "jiaomatthew222@gmail.com",
                         pass: "b0nan0mankillsy0u"
                     },
+                    secureConnection: false, // TLS requires secureConnection to be false
+                    port: 587, // port for secure SMTP - TLS
                     tls: {
                         rejectUnauthorized: true
                      }
