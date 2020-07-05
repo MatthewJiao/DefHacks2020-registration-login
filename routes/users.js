@@ -101,7 +101,7 @@ Router.post('/register', async (req, res)=>{
                         pass: "b0nan0mankillsy0u"
                     },
                     tls: {
-                        rejectUnauthorized: false
+                        rejectUnauthorized: true
                      }
                 })
             
