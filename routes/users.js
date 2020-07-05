@@ -54,7 +54,7 @@ Router.post('/register', async (req, res)=>{
 
     }
 
-    var whiteList = ["uwaterloo.ca","yorku.ca","utoronto.ca","mcmaster.ca","ryerson.ca","queensu.ca","uwo.ca","uOttawa.ca","carleton.ca","wlu.ca"]
+    var whiteList = ["gmail.com","uwaterloo.ca","yorku.ca","utoronto.ca","mcmaster.ca","ryerson.ca","queensu.ca","uwo.ca","uOttawa.ca","carleton.ca","wlu.ca"]
     var emailExt = email.split("@")[1];
     var temp = true
     whiteList.forEach(ext=>{
@@ -95,10 +95,10 @@ Router.post('/register', async (req, res)=>{
                 })
 
                 const transporter = nodemailer.createTransport({
-                    service: 'Gmail',
+                    host: smtp-mail.outlook.com,
                     auth: {
-                        user: "jiaomatthew222@gmail.com",
-                        pass: "b0nan0mankillsy0u"
+                        user: "m5jiao@uwaterloo.ca",
+                        pass: "Awesomeguy123k#"
                     },
                     secureConnection: false, // TLS requires secureConnection to be false
                     port: 587, // port for secure SMTP - TLS
