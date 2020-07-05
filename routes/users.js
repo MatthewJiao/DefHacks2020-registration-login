@@ -112,7 +112,7 @@ Router.post('/register', async (req, res)=>{
                     subject: 'Confirm Email',
                     html: `please click this link to confirm your email: <a href="${url}">${url}</a>`,
                     tls: {
-                        rejectUnauthorized: true
+                        rejectUnauthorized: false
                      }
                 })
                 
