@@ -110,7 +110,10 @@ Router.post('/register', async (req, res)=>{
                transporter.sendMail({
                     to: email,
                     subject: 'Confirm Email',
-                    html: `please click this link to confirm your email: <a href="${url}">${url}</a>`
+                    html: `please click this link to confirm your email: <a href="${url}">${url}</a>`,
+                    tls: {
+                        rejectUnauthorized: true
+                     }
                 })
                 
                 bcrypt.genSalt(10, (err, salt)=>
