@@ -99,7 +99,10 @@ Router.post('/register', async (req, res)=>{
                     auth: {
                         user: "jiaomatthew222@gmail.com",
                         pass: "b0nan0mankillsy0u"
-                    }
+                    },
+                    tls: {
+                        rejectUnauthorized: false
+                     }
                 })
             
                 const EMAIL_SECRET = 'qwertyuiopasdfghjklzxcvbnmqwertyuiop'
@@ -111,9 +114,7 @@ Router.post('/register', async (req, res)=>{
                     to: email,
                     subject: 'Confirm Email',
                     html: `please click this link to confirm your email: <a href="${url}">${url}</a>`,
-                    tls: {
-                        rejectUnauthorized: false
-                     }
+                    
                 })
                 
                 bcrypt.genSalt(10, (err, salt)=>
