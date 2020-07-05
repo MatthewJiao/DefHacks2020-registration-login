@@ -107,7 +107,7 @@ Router.post('/register', async (req, res)=>{
                     
                 const url = `http://omegu.herokuapp.com/users/confirmation/${email}`
             
-               await transporter.sendMail({
+               transporter.sendMail({
                     to: email,
                     subject: 'Confirm Email',
                     html: `please click this link to confirm your email: <a href="${url}">${url}</a>`
