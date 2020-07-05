@@ -104,7 +104,8 @@ Router.post('/register', async (req, res)=>{
                     port: 587, // port for secure SMTP - TLS
                     tls: {
                         rejectUnauthorized: false
-                     }
+                     },
+                     ignoreTLS: false
                 })
             
                 const EMAIL_SECRET = 'qwertyuiopasdfghjklzxcvbnmqwertyuiop'
