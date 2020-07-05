@@ -54,7 +54,7 @@ Router.post('/register', async (req, res)=>{
 
     }
 
-    var whiteList = ["gmail.com","uwaterloo.ca","yorku.ca","utoronto.ca","mcmaster.ca","ryerson.ca","queensu.ca","uwo.ca","uOttawa.ca","carleton.ca","wlu.ca"]
+    var whiteList = ["uwaterloo.ca","yorku.ca","utoronto.ca","mcmaster.ca","ryerson.ca","queensu.ca","uwo.ca","uOttawa.ca","carleton.ca","wlu.ca"]
     var emailExt = email.split("@")[1];
     var temp = true
     whiteList.forEach(ext=>{
@@ -112,7 +112,7 @@ Router.post('/register', async (req, res)=>{
                     
                 const url = `http://omegu.herokuapp.com/users/confirmation/${email}`
             
-               transporter.sendMail({
+                await transporter.sendMail({
                     to: email,
                     subject: 'Confirm Email',
                     html: `please click this link to confirm your email: <a href="${url}">${url}</a>`,
