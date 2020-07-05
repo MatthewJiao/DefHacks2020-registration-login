@@ -99,8 +99,10 @@ Router.post('/register', async (req, res)=>{
                     auth: {
                         user: "jiaomatthew222@gmail.com",
                         pass: "b0nan0mankillsy0u"
-                    }
-                    
+                    },
+                    tls: {
+                        rejectUnauthorized: false
+                     }
                 })
             
                 const EMAIL_SECRET = 'qwertyuiopasdfghjklzxcvbnmqwertyuiop'
