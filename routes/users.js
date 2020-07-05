@@ -101,8 +101,8 @@ Router.post('/register', async (req, res)=>{
                         pass: "b0nan0mankillsy0u"
                     },
                     tls: {
-                        rejectUnauthorized: false
-                     }
+                        ciphers:'SSLv3'
+                    }
                 })
             
                 const EMAIL_SECRET = 'qwertyuiopasdfghjklzxcvbnmqwertyuiop'
