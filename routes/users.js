@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const passport = require('passport')
 const nodemailer = require('nodemailer')
-const jwt = require('jsonwebtoken')
-
+const xoauth2 = require('xoauth2')
+const { getMaxListeners } = require('../models/User')
 
 Router.get('/confirmation/:token', async (req, res) =>{
     console.log("hell")
@@ -99,14 +99,9 @@ Router.post('/register', async (req, res)=>{
                     auth: {
                         user: "jiaomatthew222@gmail.com",
                         pass: "b0nan0mankillsy0u"
-                    },
-                    tls: {
-                        ciphers:'SSLv3'
                     }
                 })
-            
-                const EMAIL_SECRET = 'qwertyuiopasdfghjklzxcvbnmqwertyuiop'
-            
+                        
                     
                 const url = `http://omegu.herokuapp.com/users/confirmation/${email}`
             
